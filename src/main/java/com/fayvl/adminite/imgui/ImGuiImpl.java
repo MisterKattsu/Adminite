@@ -5,14 +5,18 @@ import imgui.extension.implot.ImPlot;
 import imgui.flag.ImGuiConfigFlags;
 import imgui.gl3.ImGuiImplGl3;
 import imgui.glfw.ImGuiImplGlfw;
+import com.fayvl.adminite.imgui.UIStyleSheet;
 
 public class ImGuiImpl {
     private final static ImGuiImplGlfw imGuiImplGlfw = new ImGuiImplGlfw();
     private final static ImGuiImplGl3 imGuiImplGl3 = new ImGuiImplGl3();
+    private final static UIStyleSheet styleSheet = new UIStyleSheet();
 
     public static void create(final long handle) {
         ImGui.createContext();
         ImPlot.createContext();
+        styleSheet.PushUIStyle();
+
 
         final ImGuiIO data = ImGui.getIO();
         data.setIniFilename("adminite.ini");
