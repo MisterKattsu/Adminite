@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "adminite",
+  "version": "${version}",
+
+  "name": "Adminite",
+  "description": "This is an example description! Tell everyone what your mod is about!",
+  "authors": [
+    "Me!"
+  ],
+  "contact": {
+    "homepage": "https://github.com/FlorianMichael/",
+    "sources": "https://github.com/FlorianMichael/fabric-imgui-example-mod"
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/adminite/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.fayvl.adminite.Adminite"
+    ]
+  },
+  "mixins": [
+    "adminite.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.15.10",
+    "minecraft": "~1.21",
+    "java": ">=21",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
