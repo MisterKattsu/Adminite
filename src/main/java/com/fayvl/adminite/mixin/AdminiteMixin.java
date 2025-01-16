@@ -3,6 +3,7 @@ package com.fayvl.adminite.mixin;
 import com.fayvl.adminite.Adminite;
 import com.fayvl.adminite.imgui.ImGuiImpl;
 import imgui.ImGui;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.TitleScreen;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,14 +21,18 @@ public class AdminiteMixin {
     @Inject(method = "render", at = @At("RETURN"))
     private void render(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
         ImGuiImpl.draw(io -> {
-            // Example on how to use a custom Font
-            // ImGui.pushFont(ImGuiImpl.defaultFont);
-            ImGui.begin("Hello World");
+            float width = MinecraftClient.getInstance().getWindow().getWidth();
+            float height = MinecraftClient.getInstance().getWindow().getHeight();
+
+            ImGui.setNextWindowPos(0, 0);
+            ImGui.setNextWindowSize(width, height);
+
+            //ImGui.begin("Hello World");
 			// Draw something here, see the official example module for more information:
 			// https://github.com/ocornut/imgui/blob/master/imgui_demo.cpp
-            ImGui.end();
+            //ImGui.end();
 
-            ImGui.showDemoWindow();
+//            ImGui.showDemoWindow();
             // ImGui.popFont();
         });
     }
