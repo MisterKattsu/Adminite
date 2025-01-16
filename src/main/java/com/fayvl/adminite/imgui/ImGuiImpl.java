@@ -6,6 +6,7 @@ import imgui.flag.ImGuiConfigFlags;
 import imgui.gl3.ImGuiImplGl3;
 import imgui.glfw.ImGuiImplGlfw;
 import com.fayvl.adminite.imgui.UIStyleSheet;
+import org.lwjgl.glfw.GLFW;
 
 public class ImGuiImpl {
     private final static ImGuiImplGlfw imGuiImplGlfw = new ImGuiImplGlfw();
@@ -73,14 +74,14 @@ public class ImGuiImpl {
         ImGui.render();
         imGuiImplGl3.renderDrawData(ImGui.getDrawData());
 
-// Add this code if you have enabled Viewports in the create method
-//        if (ImGui.getIO().hasConfigFlags(ImGuiConfigFlags.ViewportsEnable)) {
-//            final long pointer = GLFW.glfwGetCurrentContext();
-//            ImGui.updatePlatformWindows();
-//            ImGui.renderPlatformWindowsDefault();
-//
-//            GLFW.glfwMakeContextCurrent(pointer);
-//        }
+
+        if (ImGui.getIO().hasConfigFlags(ImGuiConfigFlags.ViewportsEnable)) {
+         final long pointer = GLFW.glfwGetCurrentContext();
+           ImGui.updatePlatformWindows();
+           ImGui.renderPlatformWindowsDefault();
+
+            GLFW.glfwMakeContextCurrent(pointer);
+        }
     }
 
     public static void dispose() {
