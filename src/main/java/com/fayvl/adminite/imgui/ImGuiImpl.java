@@ -6,6 +6,9 @@ import imgui.flag.ImGuiConfigFlags;
 import imgui.gl3.ImGuiImplGl3;
 import imgui.glfw.ImGuiImplGlfw;
 import com.fayvl.adminite.imgui.UIStyleSheet;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gl.Framebuffer;
+import net.minecraft.client.util.Window;
 import org.lwjgl.glfw.GLFW;
 
 public class ImGuiImpl {
@@ -22,6 +25,15 @@ public class ImGuiImpl {
         final ImGuiIO data = ImGui.getIO();
         data.setIniFilename("adminite.ini");
         data.setFontGlobalScale(1F);
+//
+//        Window window = MinecraftClient.getInstance().getWindow();
+//        window.setFramebufferHeight(800);
+//        window.setFramebufferWidth(800);
+//
+//        Framebuffer framebuffer = MinecraftClient.getInstance().getFramebuffer();
+//        framebuffer.resize(800, 800);
+
+        MinecraftClient.getInstance().mouse.setResolutionChanged();
 
         // If you want to have custom fonts, you can use the following code here
 

@@ -8,7 +8,9 @@
   "client": [
     "AdminiteMixin",
     "imgui.MinecraftClientMixin",
-    "ViewportMixin"
+    "ViewportMixin",
+    "MouseHandlerMixin"
+
   ],
   "injectors": {
     "defaultRequire": 1
