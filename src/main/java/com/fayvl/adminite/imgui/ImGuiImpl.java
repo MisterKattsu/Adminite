@@ -25,13 +25,6 @@ public class ImGuiImpl {
         final ImGuiIO data = ImGui.getIO();
         data.setIniFilename("adminite.ini");
         data.setFontGlobalScale(1F);
-//
-//        Window window = MinecraftClient.getInstance().getWindow();
-//        window.setFramebufferHeight(800);
-//        window.setFramebufferWidth(800);
-//
-//        Framebuffer framebuffer = MinecraftClient.getInstance().getFramebuffer();
-//        framebuffer.resize(800, 800);
 
         MinecraftClient.getInstance().mouse.setResolutionChanged();
 

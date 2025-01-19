@@ -2,6 +2,7 @@ package com.fayvl.adminite.mixin;
 
 import com.fayvl.adminite.Adminite;
 import com.fayvl.adminite.imgui.ImGuiImpl;
+import com.fayvl.adminite.imgui.Windows.FakeWindow;
 import imgui.ImGui;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
@@ -21,16 +22,19 @@ public class AdminiteMixin {
     @Inject(method = "render", at = @At("RETURN"))
     private void render(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
         ImGuiImpl.draw(io -> {
-            float width = MinecraftClient.getInstance().getWindow().getWidth();
-            float height = MinecraftClient.getInstance().getWindow().getHeight();
+            FakeWindow fakeWindow = (FakeWindow) MinecraftClient.getInstance().getWindow();
+            float width = fakeWindow.realWindow.getWidth();
+            float height = fakeWindow.realWindow.getHeight();
 
             ImGui.setNextWindowPos(0, 0);
+            // this does absolutely nothing in the slightest
             ImGui.setNextWindowSize(width, height);
 
             //ImGui.begin("Hello World");
 			// Draw something here, see the official example module for more information:
 			// https://github.com/ocornut/imgui/blob/master/imgui_demo.cpp
             //ImGui.end();
+            ImGui.showDemoWindow();
 
 //            ImGui.showDemoWindow();
             // ImGui.popFont();
