@@ -23,7 +23,7 @@ public class MouseHandlerMixin {
     @Shadow private double y;
 
     /**
-     * @author Kiritsuu (+Blackilykat)
+     * @author Kiritsuu (+ Blackilykat)
      * @reason cursor pos calculation is very different when minecraft doesn't use the entirety of its window
      */
     @Overwrite

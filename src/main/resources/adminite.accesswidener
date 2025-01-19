@@ -2,3 +2,4 @@ accessWidener v2 named
 extendable class net/minecraft/client/util/Window
 accessible field net/minecraft/client/util/Window handle J
 accessible field net/minecraft/client/util/Window errorCallback Lorg/lwjgl/glfw/GLFWErrorCallback;
+accessible method net/minecraft/client/util/Window onWindowSizeChanged (JII)V

@@ -1,7 +1,6 @@
 package com.fayvl.adminite.mixin;
 
 import com.fayvl.adminite.imgui.Windows.FakeWindow;
-import com.fayvl.adminite.imgui.Windows.RealWindow;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.Framebuffer;
 import org.spongepowered.asm.mixin.Mixin;

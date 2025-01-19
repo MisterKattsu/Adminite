@@ -9,7 +9,6 @@ import net.minecraft.client.util.Window;
 import net.minecraft.client.util.WindowProvider;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.glfw.GLFW;
-import org.lwjgl.system.Configuration;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;

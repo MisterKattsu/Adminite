@@ -9,7 +9,6 @@ import net.minecraft.client.WindowSettings;
 import net.minecraft.client.gl.Framebuffer;
 import net.minecraft.client.util.Icons;
 import net.minecraft.client.util.Monitor;
-import net.minecraft.client.util.MonitorFactory;
 import net.minecraft.client.util.MonitorTracker;
 import net.minecraft.client.util.VideoMode;
 import net.minecraft.client.util.Window;
@@ -18,13 +17,10 @@ import net.minecraft.resource.ResourcePack;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.glfw.Callbacks;
 import org.lwjgl.glfw.GLFW;
-import org.lwjgl.glfw.GLFWWindowCloseCallback;
 
 import java.io.IOException;
-import java.util.Locale;
 import java.util.Optional;
 import java.util.OptionalInt;
-import java.util.function.BiConsumer;
 
 public class FakeWindow extends Window {
     public RealWindow realWindow;
@@ -34,41 +30,6 @@ public class FakeWindow extends Window {
         super(new FakeWindowEventHandler(), monitorTracker, new WindowSettings(600, 600, OptionalInt.empty(), OptionalInt.empty(), false), null, title);
         this.realWindow = realWindow;
         realWindow.fakeWindow = this;
-        /*
-        GLFW.glfwDefaultWindowHints();
-        GLFW.glfwWindowHint(GLFW.GLFW_CLIENT_API, GLFW.GLFW_OPENGL_API);
-        GLFW.glfwWindowHint(GLFW.GLFW_CONTEXT_CREATION_API, GLFW.GLFW_NATIVE_CONTEXT_API);
-        GLFW.glfwWindowHint(GLFW.GLFW_CONTEXT_VERSION_MAJOR, 3);
-        GLFW.glfwWindowHint(GLFW.GLFW_CONTEXT_VERSION_MINOR, 2);
-        GLFW.glfwWindowHint(GLFW.GLFW_OPENGL_PROFILE, GLFW.GLFW_OPENGL_CORE_PROFILE);
-        GLFW.glfwWindowHint(GLFW.GLFW_OPENGL_FORWARD_COMPAT, 1);
-
-        this.updateWindowRegion();
-        this.updateFramebufferSize();
-
-        GLFW.glfwSetFramebufferSizeCallback(this.handle, this::onFramebufferSizeChanged);
-        GLFW.glfwSetWindowPosCallback(this.handle, this::onWindowPosChanged);
-        GLFW.glfwSetWindowSizeCallback(this.handle, this::onWindowSizeChanged);
-        GLFW.glfwSetWindowFocusCallback(this.handle, this::onWindowFocusChanged);
-        GLFW.glfwSetCursorEnterCallback(this.handle, this::onCursorEnterChanged);
-        GLFW.glfwSetWindowIconifyCallback(this.handle, this::onMinimizeChanged);
-         */
-    }
-
-    public static String getGlfwPlatform() {
-        int i = GLFW.glfwGetPlatform();
-        String var10000;
-        switch (i) {
-            case 0 -> var10000 = "<error>";
-            case 393217 -> var10000 = "win32";
-            case 393218 -> var10000 = "cocoa";
-            case 393219 -> var10000 = "wayland";
-            case 393220 -> var10000 = "x11";
-            case 393221 -> var10000 = "null";
-            default -> var10000 = String.format(Locale.ROOT, "unknown (%08X)", i);
-        }
-
-        return var10000;
     }
 
     public int getRefreshRate() {
@@ -79,58 +40,8 @@ public class FakeWindow extends Window {
         return realWindow.shouldClose();
     }
 
-    public static void acceptError(BiConsumer<Integer, String> consumer) {
-    }
-
     public void setIcon(ResourcePack resourcePack, Icons icons) throws IOException {
     }
-
-    /*
-    public void setPhase(String phase) {
-        this.phase = phase;
-    }
-     */
-
-    /*
-    private void throwOnGlError() {
-        GLFW.glfwSetErrorCallback(Window::throwGlError);
-    }
-     */
-
-    /*
-    private static void throwGlError(int error, long description) {
-        String string = "GLFW error " + error + ": " + MemoryUtil.memUTF8(description);
-        TinyFileDialogs.tinyfd_messageBox("Minecraft", string + ".\n\nPlease make sure you have up-to-date drivers (see aka.ms/mcdriver for instructions).", "ok", "error", false);
-        throw new GlErroredException(string);
-    }
-     */
-
-    /*
-    public void logGlError(int error, long description) {
-        RenderSystem.assertOnRenderThread();
-        String string = MemoryUtil.memUTF8(description);
-        LOGGER.error("########## GL ERROR ##########");
-        LOGGER.error("@ {}", this.phase);
-        LOGGER.error("{}: {}", error, string);
-    }
-     */
-
-    /*
-    public void logOnGlError() {
-        GLFWErrorCallback gLFWErrorCallback = GLFW.glfwSetErrorCallback(this.errorCallback);
-        if (gLFWErrorCallback != null) {
-            gLFWErrorCallback.free();
-        }
-    }
-     */
-
-    /*
-    public void setVsync(boolean vsync) {
-        RenderSystem.assertOnRenderThreadOrInit();
-        this.vsync = vsync;
-        GLFW.glfwSwapInterval(vsync ? 1 : 0);
-    }
-     */
 
     public void close() {
         RenderSystem.assertOnRenderThread();
@@ -138,29 +49,6 @@ public class FakeWindow extends Window {
         this.errorCallback.close();
         GLFW.glfwDestroyWindow(this.handle);
         GLFW.glfwTerminate();
-    }
-
-    private void onWindowPosChanged(long window, int x, int y) {
-    }
-
-    private void onFramebufferSizeChanged(long window, int width, int height) {
-    }
-
-    private void updateFramebufferSize() {
-    }
-
-    private void onWindowSizeChanged(long window, int width, int height) {
-    }
-
-    private void onWindowFocusChanged(long window, boolean focused) {
-
-    }
-
-    private void onCursorEnterChanged(long window, boolean entered) {
-
-    }
-
-    private void onMinimizeChanged(long window, boolean minimized) {
     }
 
     public void swapBuffers(@Nullable TracyFrameCapturer capturer) {
@@ -287,7 +175,7 @@ public class FakeWindow extends Window {
     }
 
     public void setRawMouseMotion(boolean rawMouseMotion) {
-        // might want to forward to real window, but this is for usage with an external gui so probably not
+        // Should forward to realWindow (only when appropriate)
     }
 
     public void setCloseCallback(Runnable callback) {
