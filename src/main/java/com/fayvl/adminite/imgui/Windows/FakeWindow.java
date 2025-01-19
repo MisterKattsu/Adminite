@@ -28,6 +28,7 @@ public class FakeWindow extends Window {
     public int offsetY = 500;
     public FakeWindow(String title, RealWindow realWindow, MonitorTracker monitorTracker) {
         super(new FakeWindowEventHandler(), monitorTracker, new WindowSettings(600, 600, OptionalInt.empty(), OptionalInt.empty(), false), null, title);
+        GLFW.glfwHideWindow(this.getHandle());
         this.realWindow = realWindow;
         realWindow.fakeWindow = this;
     }
