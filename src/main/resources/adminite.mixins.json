@@ -6,11 +6,11 @@
   "mixins": [
   ],
   "client": [
-    "AdminiteMixin",
-    "imgui.MinecraftClientMixin",
-    "ViewportMixin",
-    "MouseHandlerMixin"
-
+    "FramebufferMixin",
+    "KeyboardMixin",
+    "MouseHandlerMixin",
+    "WindowProviderMixin",
+    "imgui.MinecraftClientMixin"
   ],
   "injectors": {
     "defaultRequire": 1

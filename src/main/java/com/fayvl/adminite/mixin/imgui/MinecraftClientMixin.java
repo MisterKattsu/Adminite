@@ -1,6 +1,7 @@
 package com.fayvl.adminite.mixin.imgui;
 
 import com.fayvl.adminite.imgui.ImGuiImpl;
+import com.fayvl.adminite.imgui.Windows.FakeWindow;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.RunArgs;
 import net.minecraft.client.util.Window;
@@ -20,7 +21,7 @@ public class MinecraftClientMixin {
 
     @Inject(method = "<init>", at = @At("RETURN"))
     public void initImGui(RunArgs args, CallbackInfo ci) {
-        ImGuiImpl.create(window.getHandle());
+        ImGuiImpl.create(((FakeWindow) window).realWindow.getHandle());
     }
 
     @Inject(method = "close", at = @At("RETURN"))
