@@ -190,8 +190,8 @@ public class FakeWindow extends Window {
 
         realWindow.swapBuffers(capturer);
 
-        framebuffer.viewportHeight = realWindow.getHeight();
-        framebuffer.viewportWidth = realWindow.getWidth();
+        framebuffer.viewportHeight = realWindow.fakeWindow.getHeight();
+        framebuffer.viewportWidth = realWindow.fakeWindow.getWidth();
     }
 
     public Optional<VideoMode> getFullscreenVideoMode() {
