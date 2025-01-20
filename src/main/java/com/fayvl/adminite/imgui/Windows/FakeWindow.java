@@ -1,5 +1,6 @@
 package com.fayvl.adminite.imgui.Windows;
 
+import com.fayvl.adminite.UI.UIMenuBar;
 import com.fayvl.adminite.UI.UIMenuItems;
 import com.fayvl.adminite.imgui.ImGuiImpl;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -69,8 +70,8 @@ public class FakeWindow extends Window {
             //ImGui.setNextWindowSize(width, height);
             ImGui.begin("Adminite Menu");
 
-            UIMenuItems.UIButton button = new UIMenuItems.UIButton("Click Me", UIMenuItems.UIState.PREMIUM);
-            UIMenuItems.UICheckbox checkbox = new UIMenuItems.UICheckbox("Enable Feature", UIMenuItems.UIState.DEFAULT, true);
+            UIMenuItems.UIButton button = new UIMenuItems.UIButton("Style Editor", UIMenuItems.UIState.PREMIUM);
+            UIMenuItems.UICheckbox checkbox = new UIMenuItems.UICheckbox("Enable this style", UIMenuItems.UIState.DEFAULT, true);
             UIMenuItems.UISlider slider = new UIMenuItems.UISlider("Volume", UIMenuItems.UIState.PREMIUM, 0.5f, 0.0f, 1.0f);
 
             button.render();
@@ -80,6 +81,7 @@ public class FakeWindow extends Window {
             ImGui.end();
 
             ImGui.showDemoWindow();
+            UIMenuBar.render();
 
         });
 

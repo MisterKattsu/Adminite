@@ -31,9 +31,9 @@ public class UIMenuItems {
                     ImGui.endDisabled();
                     if (ImGui.isItemHovered(ImGuiHoveredFlags.AllowWhenDisabled)) {
                         ImGui.beginTooltip();
-                        ImGui.text(state == UIState.ACCESS_RESTRICTED
+                        ImGui.text(String.format(state == UIState.ACCESS_RESTRICTED
                                 ? "Access Restricted!"
-                                : "Premium Feature!");
+                                : "%s Is A Premium Feature!", label));
                         ImGui.endTooltip();
                     }
                 }
@@ -65,9 +65,9 @@ public class UIMenuItems {
                     ImGui.endDisabled();
                     if (ImGui.isItemHovered(ImGuiHoveredFlags.AllowWhenDisabled)) {
                         ImGui.beginTooltip();
-                        ImGui.text(state == UIState.ACCESS_RESTRICTED
+                        ImGui.text(String.format(state == UIState.ACCESS_RESTRICTED
                                 ? "Access Restricted!"
-                                : "Premium Feature!");
+                                : "%s Is A Premium Feature!", label));
                         ImGui.endTooltip();
                     }
                 }
@@ -105,9 +105,9 @@ public class UIMenuItems {
                     ImGui.endDisabled();
                     if (ImGui.isItemHovered(ImGuiHoveredFlags.AllowWhenDisabled)) {
                         ImGui.beginTooltip();
-                        ImGui.text(state == UIState.ACCESS_RESTRICTED
+                        ImGui.text(String.format(state == UIState.ACCESS_RESTRICTED
                                 ? "Access Restricted!"
-                                : "Premium Feature!");
+                                : "%s Is A Premium Feature!", label));
                         ImGui.endTooltip();
                     }
                 }
