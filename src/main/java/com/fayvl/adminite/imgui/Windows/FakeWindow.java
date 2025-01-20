@@ -1,5 +1,6 @@
 package com.fayvl.adminite.imgui.Windows;
 
+import com.fayvl.adminite.UI.UIMenuItems;
 import com.fayvl.adminite.imgui.ImGuiImpl;
 import com.mojang.blaze3d.systems.RenderSystem;
 import imgui.ImGui;
@@ -63,18 +64,23 @@ public class FakeWindow extends Window {
             float width = fakeWindow.realWindow.getWidth();
             float height = fakeWindow.realWindow.getHeight();
 
-            ImGui.setNextWindowPos(0, 0);
+            //ImGui.setNextWindowPos(0, 0);
             // this does absolutely nothing in the slightest
-            ImGui.setNextWindowSize(width, height);
+            //ImGui.setNextWindowSize(width, height);
+            ImGui.begin("Adminite Menu");
 
-            //ImGui.begin("Hello World");
-            // Draw something here, see the official example module for more information:
-            // https://github.com/ocornut/imgui/blob/master/imgui_demo.cpp
-            //ImGui.end();
+            UIMenuItems.UIButton button = new UIMenuItems.UIButton("Click Me", UIMenuItems.UIState.PREMIUM);
+            UIMenuItems.UICheckbox checkbox = new UIMenuItems.UICheckbox("Enable Feature", UIMenuItems.UIState.ACCESS_RESTRICTED, true);
+            UIMenuItems.UISlider slider = new UIMenuItems.UISlider("Volume", UIMenuItems.UIState.ACCESS_RESTRICTED, 0.5f, 0.0f, 1.0f);
+
+            button.render();
+            checkbox.render();
+            slider.render();
+
+            ImGui.end();
+
             ImGui.showDemoWindow();
 
-            //            ImGui.showDemoWindow();
-            // ImGui.popFont();
         });
 
         realWindow.swapBuffers(capturer);
