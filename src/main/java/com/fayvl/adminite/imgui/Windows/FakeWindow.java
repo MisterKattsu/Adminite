@@ -70,8 +70,8 @@ public class FakeWindow extends Window {
             ImGui.begin("Adminite Menu");
 
             UIMenuItems.UIButton button = new UIMenuItems.UIButton("Click Me", UIMenuItems.UIState.PREMIUM);
-            UIMenuItems.UICheckbox checkbox = new UIMenuItems.UICheckbox("Enable Feature", UIMenuItems.UIState.ACCESS_RESTRICTED, true);
-            UIMenuItems.UISlider slider = new UIMenuItems.UISlider("Volume", UIMenuItems.UIState.ACCESS_RESTRICTED, 0.5f, 0.0f, 1.0f);
+            UIMenuItems.UICheckbox checkbox = new UIMenuItems.UICheckbox("Enable Feature", UIMenuItems.UIState.DEFAULT, true);
+            UIMenuItems.UISlider slider = new UIMenuItems.UISlider("Volume", UIMenuItems.UIState.PREMIUM, 0.5f, 0.0f, 1.0f);
 
             button.render();
             checkbox.render();

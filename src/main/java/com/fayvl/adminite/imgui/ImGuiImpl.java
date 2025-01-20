@@ -9,14 +9,23 @@ import com.fayvl.adminite.imgui.UIStyleSheet;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.Framebuffer;
 import net.minecraft.client.util.Window;
+import org.apache.commons.compress.utils.IOUtils;
 import org.lwjgl.glfw.GLFW;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class ImGuiImpl {
     private final static ImGuiImplGlfw imGuiImplGlfw = new ImGuiImplGlfw();
     private final static ImGuiImplGl3 imGuiImplGl3 = new ImGuiImplGl3();
     private final static UIStyleSheet styleSheet = new UIStyleSheet();
 
-    public static void create(final long handle) {
+    public static void create(final long handle) throws IOException {
         ImGui.createContext();
         ImPlot.createContext();
         styleSheet.PushUIStyle();
@@ -24,38 +33,43 @@ public class ImGuiImpl {
 
         final ImGuiIO data = ImGui.getIO();
         data.setIniFilename("adminite.ini");
-        data.setFontGlobalScale(1F);
+        data.setFontGlobalScale(0.6F);
 
         MinecraftClient.getInstance().mouse.setResolutionChanged();
 
-        // If you want to have custom fonts, you can use the following code here
 
-//        {
-//            final ImFontAtlas fonts = data.getFonts();
-//            final ImFontGlyphRangesBuilder rangesBuilder = new ImFontGlyphRangesBuilder();
-//
-//            rangesBuilder.addRanges(data.getFonts().getGlyphRangesDefault());
-//            rangesBuilder.addRanges(data.getFonts().getGlyphRangesCyrillic());
-//            rangesBuilder.addRanges(data.getFonts().getGlyphRangesJapanese());
-//
-//            final short[] glyphRanges = rangesBuilder.buildRanges();
-//
-//            final ImFontConfig basicConfig = new ImFontConfig();
-//            basicConfig.setGlyphRanges(data.getFonts().getGlyphRangesCyrillic());
-//
-//            final List<ImFont> generatedFonts = new ArrayList<>();
-//            for (int i = 5 /* MINIMUM_FONT_SIZE */; i < 50 /* MAXIMUM_FONT_SIZE */; i++) {
-//                basicConfig.setName("<Font Name> " + i + "px");
-//                generatedFonts.add(fonts.addFontFromMemoryTTF(IOUtils.toByteArray(Objects.requireNonNull(ImGuiImpl.class.getResourceAsStream("<File Path>"))), i, basicConfig, glyphRanges));
-//            }
-//            fonts.build();
-//            basicConfig.destroy();
-//        }
+        {
+            final ImFontAtlas fonts = data.getFonts();
+            final ImFontGlyphRangesBuilder rangesBuilder = new ImFontGlyphRangesBuilder();
 
-        // The "generatedFonts" list now contains an ImFont for each scale from 5 to 50, you should save the font scales you want as global fields here to use them later:
-        // For example:
-        // defaultFont = generatedFonts.get(30); // Font scale is 30
-        // How you can apply the font then, you can see in ExampleMixin
+            rangesBuilder.addRanges(data.getFonts().getGlyphRangesDefault());
+            rangesBuilder.addRanges(data.getFonts().getGlyphRangesCyrillic());
+            rangesBuilder.addRanges(data.getFonts().getGlyphRangesJapanese());
+
+            final short[] glyphRanges = rangesBuilder.buildRanges();
+
+            final ImFontConfig basicConfig = new ImFontConfig();
+            basicConfig.setGlyphRanges(data.getFonts().getGlyphRangesCyrillic());
+
+            final List<ImFont> generatedFonts = new ArrayList<>();
+            try {
+                byte[] fontData = Files.readAllBytes(Paths.get(Objects.requireNonNull(
+                        ImGuiImpl.class.getResource("/fonts/Aller_Bd.ttf")).toURI())); // Correct resource path
+
+                // Use larger font sizes to avoid tiny text
+                for (int i = 20; i < 70; i++) { // Start from 20px, up to 70px
+                    basicConfig.setName("Aller_Bd " + i + "px");
+                    generatedFonts.add(fonts.addFontFromMemoryTTF(fontData, i, basicConfig, glyphRanges));
+                }
+            } catch (IOException | URISyntaxException e) {
+                e.printStackTrace();
+            }
+            fonts.build();
+            basicConfig.destroy();
+
+            // Select a larger font size (e.g., 50px)
+            ImFont defaultFont = generatedFonts.get(25); // 55px font size
+        }
 
         data.setConfigFlags(ImGuiConfigFlags.DockingEnable);
 

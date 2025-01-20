@@ -15,7 +15,7 @@ public class UIStyleSheet {
         style.setColor(ImGuiCol.WindowBg, 0.07f, 0.07f, 0.07f, 1.00f);          // #111212
         style.setColor(ImGuiCol.PopupBg, 0.14f, 0.18f, 0.25f, 1.00f);           // Gunmetal (#242F40)
         style.setColor(ImGuiCol.Border, 0.36f, 0.36f, 0.36f, 0.80f);            // Jet (#363636)
-        style.setColor(ImGuiCol.FrameBg, 0.07f, 0.07f, 0.07f, 1.00f);           // #111212
+        style.setColor(ImGuiCol.FrameBg, 0.1216f, 0.1137f, 0.1137f, 1f);           // #111212
         style.setColor(ImGuiCol.FrameBgHovered, 0.14f, 0.18f, 0.25f, 1.00f);    // Gunmetal (#242F40)
         style.setColor(ImGuiCol.FrameBgActive, 0.80f, 0.65f, 0.23f, 1.00f);     // Satin Sheen Gold (#CCA43B)
         style.setColor(ImGuiCol.TitleBg, 0.14f, 0.18f, 0.25f, 1.00f);           // Gunmetal (#242F40)
@@ -27,7 +27,7 @@ public class UIStyleSheet {
         style.setColor(ImGuiCol.ScrollbarGrabHovered, 1.00f, 1.00f, 1.00f, 1.00f); // White
         style.setColor(ImGuiCol.ScrollbarGrabActive, 0.80f, 0.65f, 0.23f, 1.00f); // Satin Sheen Gold (#CCA43B)
         style.setColor(ImGuiCol.CheckMark, 0.80f, 0.65f, 0.23f, 1.00f);         // Satin Sheen Gold (#CCA43B)
-        style.setColor(ImGuiCol.SliderGrab, 0.14f, 0.18f, 0.25f, 1.00f);        // Gunmetal (#242F40)
+        style.setColor(ImGuiCol.SliderGrab, 1.00f, 1.00f, 1.00f, 1.00f);        // Gunmetal (#242F40)
         style.setColor(ImGuiCol.SliderGrabActive, 0.80f, 0.65f, 0.23f, 1.00f);  // Satin Sheen Gold (#CCA43B)
         style.setColor(ImGuiCol.Button, 0.14f, 0.18f, 0.25f, 1.00f);            // Gunmetal (#242F40)
         style.setColor(ImGuiCol.ButtonHovered, 0.80f, 0.65f, 0.23f, 1.00f);     // Satin Sheen Gold (#CCA43B)
@@ -38,7 +38,7 @@ public class UIStyleSheet {
         style.setColor(ImGuiCol.Tab, 0.14f, 0.18f, 0.25f, 1.00f);               // Gunmetal (#242F40)
         style.setColor(ImGuiCol.TabHovered, 0.80f, 0.65f, 0.23f, 1.00f);        // Satin Sheen Gold (#CCA43B)
         style.setColor(ImGuiCol.TabActive, 0.14f, 0.18f, 0.25f, 1.00f);         // Gunmetal (#242F40)
-        style.setColor(ImGuiCol.TextSelectedBg, 0.80f, 0.65f, 0.23f, 1.00f);    // Satin Sheen Gold (#CCA43B)
+        style.setColor(ImGuiCol.TextSelectedBg, 0.80f, 0.65f, 0.23f, 1.00f);
     }
 
     private static @NotNull ImGuiStyle getGuiStyle() {
