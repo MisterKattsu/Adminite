@@ -1,12 +1,17 @@
 package com.fayvl.adminite.UI;
 
-import com.fayvl.adminite.imgui.ImGuiImpl;
+import com.fayvl.adminite.Adminite;
+import com.fayvl.adminite.imgui.TextureLoader;
 import imgui.ImGui;
 import imgui.flag.ImGuiHoveredFlags;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.util.Window;
 
 public class UIMenuItems {
+
+    public static int locker1;
+
+    public static void initialize() {
+        locker1 = TextureLoader.loadTexture("resources/icons/Locker1.png");
+    }
 
     public enum UIState {
         ACCESS_RESTRICTED,
@@ -24,18 +29,13 @@ public class UIMenuItems {
         }
 
         public void render() {
+            renderIconIfRestricted(state);
             switch (state) {
                 case ACCESS_RESTRICTED, PREMIUM -> {
                     ImGui.beginDisabled();
                     ImGui.button(label);
                     ImGui.endDisabled();
-                    if (ImGui.isItemHovered(ImGuiHoveredFlags.AllowWhenDisabled)) {
-                        ImGui.beginTooltip();
-                        ImGui.text(String.format(state == UIState.ACCESS_RESTRICTED
-                                ? "Access Restricted!"
-                                : "%s Is A Premium Feature!", label));
-                        ImGui.endTooltip();
-                    }
+                    renderTooltip(state, label);
                 }
                 case DEFAULT -> {
                     if (ImGui.button(label)) {
@@ -58,18 +58,13 @@ public class UIMenuItems {
         }
 
         public void render() {
+            renderIconIfRestricted(state);
             switch (state) {
                 case ACCESS_RESTRICTED, PREMIUM -> {
                     ImGui.beginDisabled();
                     ImGui.checkbox(label, checked);
                     ImGui.endDisabled();
-                    if (ImGui.isItemHovered(ImGuiHoveredFlags.AllowWhenDisabled)) {
-                        ImGui.beginTooltip();
-                        ImGui.text(String.format(state == UIState.ACCESS_RESTRICTED
-                                ? "Access Restricted!"
-                                : "%s Is A Premium Feature!", label));
-                        ImGui.endTooltip();
-                    }
+                    renderTooltip(state, label);
                 }
                 case DEFAULT -> {
                     if (ImGui.checkbox(label, checked)) {
@@ -81,7 +76,6 @@ public class UIMenuItems {
         }
     }
 
-    // UISlider Class
     public static class UISlider {
         private final String label;
         private final UIState state;
@@ -98,18 +92,13 @@ public class UIMenuItems {
         }
 
         public void render() {
+            renderIconIfRestricted(state);
             switch (state) {
                 case ACCESS_RESTRICTED, PREMIUM -> {
                     ImGui.beginDisabled();
                     ImGui.sliderFloat(label, new float[]{value}, minValue, maxValue);
                     ImGui.endDisabled();
-                    if (ImGui.isItemHovered(ImGuiHoveredFlags.AllowWhenDisabled)) {
-                        ImGui.beginTooltip();
-                        ImGui.text(String.format(state == UIState.ACCESS_RESTRICTED
-                                ? "Access Restricted!"
-                                : "%s Is A Premium Feature!", label));
-                        ImGui.endTooltip();
-                    }
+                    renderTooltip(state, label);
                 }
                 case DEFAULT -> {
                     float[] valueArray = {value};
@@ -122,4 +111,28 @@ public class UIMenuItems {
         }
     }
 
+    private static void renderIconIfRestricted(UIState state) {
+        if (state == UIState.ACCESS_RESTRICTED || state == UIState.PREMIUM) {
+            float iconSize = 16; // Adjust as needed
+            float iconPadding = (ImGui.getFontSize() - iconSize) / 2; // Center the icon vertically
+            ImGui.setCursorPosY(ImGui.getCursorPosY() + iconPadding); // Offset the Y position
+            ImGui.image(locker1, iconSize, iconSize);
+            ImGui.sameLine();
+        }
+
+        if (locker1 == 0) {
+            Adminite.LOGGER.error("Failed to load texture for locker1.");
+        }
+    }
+
+
+    private static void renderTooltip(UIState state, String label) {
+        if (ImGui.isItemHovered(ImGuiHoveredFlags.AllowWhenDisabled)) {
+            ImGui.beginTooltip();
+            ImGui.text(String.format(state == UIState.ACCESS_RESTRICTED
+                    ? "Access Restricted!"
+                    : "%s Is A Premium Feature!", label));
+            ImGui.endTooltip();
+        }
+    }
 }

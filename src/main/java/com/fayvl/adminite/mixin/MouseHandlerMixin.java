@@ -1,11 +1,13 @@
 package com.fayvl.adminite.mixin;
 
 
+import com.fayvl.adminite.Adminite;
 import com.fayvl.adminite.imgui.Windows.FakeWindow;
 import com.fayvl.adminite.imgui.Windows.RealWindow;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.Mouse;
 import net.minecraft.client.util.VideoMode;
+import org.lwjgl.glfw.GLFW;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -21,9 +23,10 @@ public class MouseHandlerMixin {
     @Shadow private double cursorDeltaY;
     @Shadow private double x;
     @Shadow private double y;
+    @Shadow private boolean cursorLocked;
 
     /**
-     * @author Kiritsuu (+ Blackilykat)
+     * @author Kiritsuu, BigP (+ Blackilykat)
      * @reason cursor pos calculation is very different when minecraft doesn't use the entirety of its window
      */
     @Overwrite
@@ -31,8 +34,11 @@ public class MouseHandlerMixin {
         MinecraftClient instance = MinecraftClient.getInstance();
 
         FakeWindow fakeWindow = ((FakeWindow) instance.getWindow());
-        x -= fakeWindow.offsetX;
-        y -= fakeWindow.offsetY;
+
+        if(!this.cursorLocked) {
+            x -= fakeWindow.offsetX;
+            y -= fakeWindow.offsetY;
+        }
 
         RealWindow window = fakeWindow.realWindow;
         if (handle == window.getHandle() && window.getMonitor() != null) {
@@ -41,13 +47,26 @@ public class MouseHandlerMixin {
             double mouseXScale = (double) 800 /videoMode.getWidth();
             double mouseYScale = (double) 600 /videoMode.getHeight();
 
-            this.x *= mouseXScale;
-            this.y *= mouseYScale;
+            // this is a very lazy way of doing this. We don't care, it works. :D
+            if (!this.cursorLocked) {
+                this.x *= mouseXScale;
+                this.y *= mouseYScale;
+            } else {
+                x *= mouseXScale;
+                y *= mouseYScale;
+            }
 
             if (instance.isWindowFocused()) {
                 this.cursorDeltaX += x - this.x;
                 this.cursorDeltaY += y - this.y;
             }
+
+            if (this.cursorLocked) {
+                GLFW.glfwSetInputMode(handle, 208897, 212995);
+            } else {
+                GLFW.glfwSetInputMode(handle, GLFW.GLFW_CURSOR, GLFW.GLFW_CURSOR_NORMAL);
+            }
+
             this.x = x;
             this.y = y;
         }

@@ -1,4 +1,5 @@
 package com.fayvl.adminite.UI;
+
 import imgui.ImGui;
 
 public class UIMenuBar {
@@ -11,6 +12,7 @@ public class UIMenuBar {
     }
 
     public static void renderMenuBar() {
+        // Left-aligned items
         if (ImGui.beginMenu("Player Settings-/ Logs")) {
             if (ImGui.menuItem("Report Options")) {
                 return;
@@ -24,11 +26,16 @@ public class UIMenuBar {
             }
             ImGui.endMenu();
         }
+
         if (ImGui.menuItem("Anti-Cheat Settings")) {
             return;
         }
 
         ImGui.separator();
+
+
+        float rightAlignPos = ImGui.getContentRegionAvailX() - ImGui.calcTextSize("Show Playerlist").x - ImGui.getStyle().getFramePadding().x * 2;
+        ImGui.sameLine(rightAlignPos);
 
         if (ImGui.menuItem("Show Playerlist")) {
             return;
@@ -36,9 +43,6 @@ public class UIMenuBar {
 
         ImGui.separator();
 
-        if (ImGui.menuItem("Hide (END)")) {
-            return;
-        }
+        ImGui.menuItem("Hide (END)");
     }
-
 }

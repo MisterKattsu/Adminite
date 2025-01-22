@@ -29,7 +29,7 @@ public class FakeWindow extends Window {
     public int offsetX = 500;
     public int offsetY = 500;
     public FakeWindow(String title, RealWindow realWindow, MonitorTracker monitorTracker) {
-        super(new FakeWindowEventHandler(), monitorTracker, new WindowSettings(600, 600, OptionalInt.empty(), OptionalInt.empty(), false), null, title);
+        super(new FakeWindowEventHandler(), monitorTracker, new WindowSettings(800, 600, OptionalInt.empty(), OptionalInt.empty(), false), null, title);
         GLFW.glfwHideWindow(this.getHandle());
         this.realWindow = realWindow;
         realWindow.fakeWindow = this;
@@ -137,7 +137,7 @@ public class FakeWindow extends Window {
     }
 
     public int getFramebufferWidth() {
-        return 600;
+        return 800;
     }
 
     public int getFramebufferHeight() {
@@ -151,7 +151,7 @@ public class FakeWindow extends Window {
     }
 
     public int getWidth() {
-        return 600;
+        return 800;
     }
 
     public int getHeight() {

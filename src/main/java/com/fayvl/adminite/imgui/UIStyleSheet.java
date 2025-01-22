@@ -2,46 +2,10 @@ package com.fayvl.adminite.imgui;
 
 import imgui.*;
 import imgui.flag.ImGuiCol;
-import org.jetbrains.annotations.NotNull;
 
 public class UIStyleSheet {
 
     public void PushUIStyle() {
-        ImGuiStyle style = getGuiStyle();
-
-        // Set colors using RGBA float values derived from provided color codes
-        style.setColor(ImGuiCol.Text, 1.00f, 1.00f, 1.00f, 1.00f);               // White
-        style.setColor(ImGuiCol.TextDisabled, 0.57f, 0.57f, 0.57f, 1.00f);      // Platinum (#E5E5E5)
-        style.setColor(ImGuiCol.WindowBg, 0.07f, 0.07f, 0.07f, 1.00f);          // #111212
-        style.setColor(ImGuiCol.PopupBg, 0.14f, 0.18f, 0.25f, 1.00f);           // Gunmetal (#242F40)
-        style.setColor(ImGuiCol.Border, 0.36f, 0.36f, 0.36f, 0.80f);            // Jet (#363636)
-        style.setColor(ImGuiCol.FrameBg, 0.1216f, 0.1137f, 0.1137f, 1f);           // #111212
-        style.setColor(ImGuiCol.FrameBgHovered, 0.14f, 0.18f, 0.25f, 1.00f);    // Gunmetal (#242F40)
-        style.setColor(ImGuiCol.FrameBgActive, 0.80f, 0.65f, 0.23f, 1.00f);     // Satin Sheen Gold (#CCA43B)
-        style.setColor(ImGuiCol.TitleBg, 0.14f, 0.18f, 0.25f, 1.00f);           // Gunmetal (#242F40)
-        style.setColor(ImGuiCol.TitleBgCollapsed, 0.07f, 0.07f, 0.07f, 0.75f);  // #111212
-        style.setColor(ImGuiCol.TitleBgActive, 0.80f, 0.65f, 0.23f, 1.00f);     // Satin Sheen Gold (#CCA43B)
-        style.setColor(ImGuiCol.MenuBarBg, 0.14f, 0.18f, 0.25f, 1.00f);         // Gunmetal (#242F40)
-        style.setColor(ImGuiCol.ScrollbarBg, 0.07f, 0.07f, 0.07f, 1.00f);       // #111212
-        style.setColor(ImGuiCol.ScrollbarGrab, 0.80f, 0.65f, 0.23f, 1.00f);     // Satin Sheen Gold (#CCA43B)
-        style.setColor(ImGuiCol.ScrollbarGrabHovered, 1.00f, 1.00f, 1.00f, 1.00f); // White
-        style.setColor(ImGuiCol.ScrollbarGrabActive, 0.80f, 0.65f, 0.23f, 1.00f); // Satin Sheen Gold (#CCA43B)
-        style.setColor(ImGuiCol.CheckMark, 0.80f, 0.65f, 0.23f, 1.00f);         // Satin Sheen Gold (#CCA43B)
-        style.setColor(ImGuiCol.SliderGrab, 1.00f, 1.00f, 1.00f, 1.00f);        // Gunmetal (#242F40)
-        style.setColor(ImGuiCol.SliderGrabActive, 0.80f, 0.65f, 0.23f, 1.00f);  // Satin Sheen Gold (#CCA43B)
-        style.setColor(ImGuiCol.Button, 0.14f, 0.18f, 0.25f, 1.00f);            // Gunmetal (#242F40)
-        style.setColor(ImGuiCol.ButtonHovered, 0.80f, 0.65f, 0.23f, 1.00f);     // Satin Sheen Gold (#CCA43B)
-        style.setColor(ImGuiCol.ButtonActive, 0.57f, 0.57f, 0.57f, 1.00f);      // Platinum (#E5E5E5)
-        style.setColor(ImGuiCol.Header, 0.14f, 0.18f, 0.25f, 1.00f);            // Gunmetal (#242F40)
-        style.setColor(ImGuiCol.HeaderHovered, 0.80f, 0.65f, 0.23f, 1.00f);     // Satin Sheen Gold (#CCA43B)
-        style.setColor(ImGuiCol.HeaderActive, 0.57f, 0.57f, 0.57f, 1.00f);      // Platinum (#E5E5E5)
-        style.setColor(ImGuiCol.Tab, 0.14f, 0.18f, 0.25f, 1.00f);               // Gunmetal (#242F40)
-        style.setColor(ImGuiCol.TabHovered, 0.80f, 0.65f, 0.23f, 1.00f);        // Satin Sheen Gold (#CCA43B)
-        style.setColor(ImGuiCol.TabActive, 0.14f, 0.18f, 0.25f, 1.00f);         // Gunmetal (#242F40)
-        style.setColor(ImGuiCol.TextSelectedBg, 0.80f, 0.65f, 0.23f, 1.00f);
-    }
-
-    private static @NotNull ImGuiStyle getGuiStyle() {
         ImGuiStyle style = ImGui.getStyle();
 
         style.setWindowPadding(8.0f, 8.0f);
@@ -57,6 +21,47 @@ public class UIStyleSheet {
         style.setGrabMinSize(5.0f);
         style.setGrabRounding(3.0f);
         style.setWindowBorderSize(1.5f);
-        return style;
+
+        // Set colors using RGBA float values
+        style.setColor(ImGuiCol.Text, 0.80f, 0.80f, 0.83f, 1.00f);
+        style.setColor(ImGuiCol.TextDisabled, 0.24f, 0.23f, 0.29f, 1.00f);
+        style.setColor(ImGuiCol.WindowBg, 0.06f, 0.05f, 0.07f, 1.00f);
+        style.setColor(ImGuiCol.PopupBg, 0.07f, 0.07f, 0.09f, 1.00f);
+        style.setColor(ImGuiCol.Border, 0.90588f, 0.89412f, 0.89412f, 0.2f);
+        style.setColor(ImGuiCol.FrameBg, 0.10f, 0.09f, 0.12f, 1.00f);
+        style.setColor(ImGuiCol.FrameBgHovered, 0.24f, 0.23f, 0.29f, 1.00f);
+        style.setColor(ImGuiCol.FrameBgActive, 0.56f, 0.56f, 0.58f, 1.00f);
+        style.setColor(ImGuiCol.TitleBg, 0.10f, 0.09f, 0.12f, 1.00f);
+        style.setColor(ImGuiCol.TitleBgCollapsed, 1.00f, 0.98f, 0.95f, 0.75f);
+        style.setColor(ImGuiCol.TitleBgActive, 0.07f, 0.07f, 0.09f, 1.00f);
+        style.setColor(ImGuiCol.MenuBarBg, 0.10f, 0.09f, 0.12f, 1.00f);
+        style.setColor(ImGuiCol.ScrollbarBg, 0.10f, 0.09f, 0.12f, 1.00f);
+        style.setColor(ImGuiCol.ScrollbarGrab, 0.80f, 0.80f, 0.83f, 0.31f);
+        style.setColor(ImGuiCol.ScrollbarGrabHovered, 0.56f, 0.56f, 0.58f, 1.00f);
+        style.setColor(ImGuiCol.ScrollbarGrabActive, 0.06f, 0.05f, 0.07f, 1.00f);
+        style.setColor(ImGuiCol.CheckMark, 0.90f, 0.22f, 0.34f, 1.0f);
+        style.setColor(ImGuiCol.SliderGrab, 0.80f, 0.80f, 0.83f, 0.31f);
+        style.setColor(ImGuiCol.SliderGrabActive, 0.06f, 0.05f, 0.07f, 1.00f);
+        style.setColor(ImGuiCol.Button, 0.10f, 0.09f, 0.12f, 1.00f);
+        style.setColor(ImGuiCol.ButtonHovered, 0.24f, 0.23f, 0.29f, 1.00f);
+        style.setColor(ImGuiCol.ButtonActive, 0.56f, 0.56f, 0.58f, 1.00f);
+        style.setColor(ImGuiCol.Header, 0.10f, 0.09f, 0.12f, 1.00f);
+        style.setColor(ImGuiCol.HeaderHovered, 0.90f, 0.22f, 0.34f, 1.0f);
+        style.setColor(ImGuiCol.HeaderActive, 0.06f, 0.05f, 0.07f, 1.00f);
+        style.setColor(ImGuiCol.ResizeGrip, 0.00f, 0.00f, 0.00f, 0.00f);
+        style.setColor(ImGuiCol.ResizeGripHovered, 0.56f, 0.56f, 0.58f, 1.00f);
+        style.setColor(ImGuiCol.ResizeGripActive, 0.06f, 0.05f, 0.07f, 1.00f);
+        style.setColor(ImGuiCol.PlotLines, 0.40f, 0.39f, 0.38f, 0.63f);
+        style.setColor(ImGuiCol.PlotLinesHovered, 0.25f, 1.00f, 0.00f, 1.00f);
+        style.setColor(ImGuiCol.PlotHistogram, 0.40f, 0.39f, 0.38f, 0.63f);
+        style.setColor(ImGuiCol.PlotHistogramHovered, 0.25f, 1.00f, 0.00f, 1.00f);
+        style.setColor(ImGuiCol.TextSelectedBg, 0.25f, 1.00f, 0.00f, 0.43f);
+        style.setColor(ImGuiCol.ModalWindowDimBg, 1.00f, 0.98f, 0.95f, 0.73f);
+        style.setColor(ImGuiCol.DockingPreview,0.79f, 0.12f, 0.26f, 1.0f);
+        style.setColor(ImGuiCol.Tab, 0.88f, 0.17f, 0.30f, 1.0f);          // #e02b4c
+        style.setColor(ImGuiCol.TabHovered, 0.94f, 0.27f, 0.38f, 1.0f);   // #f04561
+        style.setColor(ImGuiCol.TabActive, 0.85f, 0.14f, 0.28f, 1.0f);
+        style.setColor(ImGuiCol.TextSelectedBg, 0.90f, 0.22f, 0.34f, 1.0f);
+
     }
 }
