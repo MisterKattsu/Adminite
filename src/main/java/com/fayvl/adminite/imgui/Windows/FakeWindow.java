@@ -70,7 +70,7 @@ public class FakeWindow extends Window {
             //ImGui.setNextWindowSize(width, height);
             ImGui.begin("Adminite Menu");
 
-            UIMenuItems.UIButton button = new UIMenuItems.UIButton("Style Editor", UIMenuItems.UIState.PREMIUM);
+            UIMenuItems.UIButton button = new UIMenuItems.UIButton("Style Editor", UIMenuItems.UIState.ACCESS_RESTRICTED);
             UIMenuItems.UICheckbox checkbox = new UIMenuItems.UICheckbox("Enable this style", UIMenuItems.UIState.DEFAULT, true);
             UIMenuItems.UISlider slider = new UIMenuItems.UISlider("Volume", UIMenuItems.UIState.PREMIUM, 0.5f, 0.0f, 1.0f);
 

@@ -7,10 +7,10 @@ import imgui.flag.ImGuiHoveredFlags;
 
 public class UIMenuItems {
 
-    public static int locker1;
+    static int locker1;
 
     public static void initialize() {
-        locker1 = TextureLoader.loadTexture("resources/icons/Locker1.png");
+        locker1 = TextureLoader.loadTexture("Locker1.png");
     }
 
     public enum UIState {
@@ -116,12 +116,8 @@ public class UIMenuItems {
             float iconSize = 16; // Adjust as needed
             float iconPadding = (ImGui.getFontSize() - iconSize) / 2; // Center the icon vertically
             ImGui.setCursorPosY(ImGui.getCursorPosY() + iconPadding); // Offset the Y position
-            ImGui.image(locker1, iconSize, iconSize);
+            TextureLoader.drawIcon(locker1, 16.0f, 16.0f);
             ImGui.sameLine();
-        }
-
-        if (locker1 == 0) {
-            Adminite.LOGGER.error("Failed to load texture for locker1.");
         }
     }
 

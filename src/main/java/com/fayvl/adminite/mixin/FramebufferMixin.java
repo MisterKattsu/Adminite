@@ -1,12 +1,17 @@
 package com.fayvl.adminite.mixin;
 
+import com.fayvl.adminite.imgui.ImGuiImpl;
 import com.fayvl.adminite.imgui.Windows.FakeWindow;
+import imgui.ImGui;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.Framebuffer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
+import com.fayvl.adminite.imgui.ImGuiImpl;
 
 @Mixin(Framebuffer.class)
 public class FramebufferMixin {

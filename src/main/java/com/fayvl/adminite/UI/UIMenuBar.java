@@ -1,6 +1,7 @@
 package com.fayvl.adminite.UI;
 
 import imgui.ImGui;
+import com.fayvl.adminite.managers.DeveloperManager;
 
 public class UIMenuBar {
 
@@ -26,9 +27,10 @@ public class UIMenuBar {
             }
             ImGui.endMenu();
         }
-
-        if (ImGui.menuItem("Anti-Cheat Settings")) {
-            return;
+        if(DeveloperManager.isAllowed()){
+            if (ImGui.menuItem("Anti-Cheat Settings")) {
+                return;
+            }
         }
 
         ImGui.separator();
